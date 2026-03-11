@@ -1,0 +1,137 @@
+/* ==============================
+   Root variables
+============================== */
+:root {
+  --font-body: var(--font-inter);        /* основной текст */
+  --font-heading: var(--font-playfair);  /* заголовки */
+
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 32px;
+  --spacing-xl: 64px;
+
+  --color-border: rgba(0,0,0,0.08);
+  --color-accent: rgba(180,140,90,0.1); /* легкий восточный акцент */
+  --color-bg: #f8f6f2;
+  --color-text: #1d1d1d;
+  --color-muted: #555;
+}
+
+/* ==============================
+   Global body
+============================== */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body), system-ui, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ==============================
+   Headings
+============================== */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading), serif;
+  font-weight: 600;
+  margin: 0 0 var(--spacing-md) 0;
+}
+
+/* ==============================
+   Sections
+============================== */
+section {
+  padding: var(--spacing-lg) 20px;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* ==============================
+   Cards / Blocks
+============================== */
+.card {
+  border-radius: 18px;
+  padding: var(--spacing-md);
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Лёгкий восточный акцент (полукруг сверху справа) */
+.card::before {
+  content: "";
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  top: -40px;
+  right: -40px;
+  filter: blur(25px);
+  z-index: 0;
+}
+
+/* ==============================
+   Buttons / links
+============================== */
+button, a.button {
+  border-radius: 999px;
+  padding: 10px 20px;
+  font-size: 14px;
+  border: 1px solid var(--color-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: inline-block;
+  background: rgba(255,255,255,0.7);
+  color: var(--color-text);
+}
+
+button:hover, a.button:hover {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+/* ==============================
+   Text helpers
+============================== */
+.text-muted {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.text-center {
+  text-align: center;
+}
+nav a {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.85;
+  padding-bottom: 6px;
+  transition: opacity 0.2s ease;
+}
+
+nav a:hover {
+  opacity: 1;
+}
+
+/* тонкая линия */
+nav a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background: rgba(180, 140, 90, 0.65); /* мягкий восточный оттенок */
+  transform: translateX(-50%);
+  transition: width 0.25s ease;
+}
+
+nav a:hover::after {
+  width: 70%;
+}
