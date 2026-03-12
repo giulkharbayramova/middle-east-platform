@@ -169,6 +169,7 @@ if (data.user) {
     <option value="6">Востоковедение. Группа 6</option>
     <option value="7">Майнор. Группа 1</option>
     <option value="8">Майнор. Группа 2</option>
+    <option value="9">Любитель Ближнего Востока</option>
   </select>
 </div>
 

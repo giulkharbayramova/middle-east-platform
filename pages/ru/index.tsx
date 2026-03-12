@@ -1,10 +1,10 @@
 import RegionMap from "../../components/RegionMap";
 export default function Home() {
   const sections = [
-    { title: "📚 Библиотека", desc: "Книги, статьи, фильмы и подборки по странам региона." },
-    { title: "🧠 Квизы", desc: "Проверяй знания по культуре, политике и экономике." },
-    { title: "🗺️ Страны", desc: "Изучай страны региона и ключевые факты по каждой." },
-    { title: "✨ Факты дня", desc: "Небольшие заметки, которые расширяют кругозор." },
+    { title: "Библиотека", desc: "Книги, статьи, фильмы и подборки по странам региона." },
+    { title: "Учебные модули", desc: "Углуби знания по культуре, политике и экономике." },
+    { title: "Страны", desc: "Изучай страны региона и ключевые факты по каждой." },
+    { title: "Факты дня", desc: "Небольшие заметки, которые расширяют кругозор." },
   ];
 
   const countries = [
@@ -285,32 +285,6 @@ export default function Home() {
             {item.desc}
           </p>
 
-          {/* прогресс-полоска декоративная */}
-          <div
-            style={{
-              marginTop: "18px",
-              height: "6px",
-              borderRadius: "999px",
-              background: "rgba(0,0,0,0.06)",
-              overflow: "hidden",
-            }}
-          >
-            <div
-              style={{
-                height: "100%",
-                width:
-                  item.step === "01"
-                    ? "80%"
-                    : item.step === "02"
-                    ? "55%"
-                    : item.step === "03"
-                    ? "30%"
-                    : "10%",
-                background: "rgba(180,140,90,0.55)",
-                borderRadius: "999px",
-              }}
-            />
-          </div>
         </div>
       ))}
     </div>
@@ -339,7 +313,7 @@ export default function Home() {
 
         {/* UPDATES */}
         <section style={{ maxWidth: "1100px", margin: "80px auto 0" }}>
-          <h2 style={{ fontSize: "26px", marginBottom: "18px", color: "#1d1d1d" }}>Что нового</h2>
+          <h2 style={{ fontSize: "26px", marginBottom: "18px", color: "#1d1d1d" }}>Объявления</h2>
 
           <div
             style={{
