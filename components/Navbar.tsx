@@ -45,7 +45,7 @@ export default function Navbar() {
       style={{
         width: "100%",
         padding: "16px 0",
-        background: "red",
+        background: "rgba(248,246,242,0.85)",
         backdropFilter: "blur(10px)",
         borderBottom: "1px solid rgba(0,0,0,0.08)",
         position: "relative",
