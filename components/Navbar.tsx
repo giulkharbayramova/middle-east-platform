@@ -5,6 +5,14 @@ import { supabase } from "../lib/supabaseClient";
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   <div
   style={{
     maxWidth: "1100px",
@@ -71,7 +79,7 @@ export default function Navbar() {
           <button
   onClick={() => setMenuOpen(!menuOpen)}
   style={{
-    display: window.innerWidth < 768 ? "block" : "none",
+    display: isMobile ? "block" : "none",
     background: "transparent",
     border: "none",
     fontSize: "24px",
