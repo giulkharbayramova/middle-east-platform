@@ -90,8 +90,7 @@ export default function Navbar() {
 </button>
         {/* Меню */}
         <nav 
-          className="nav"
-          style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          style={{ display: isMobile ? "none" : "flex", gap: "20px", alignItems: "center" }}>
           {menuOpen && (
   <div
     style={{
