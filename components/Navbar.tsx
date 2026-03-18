@@ -71,13 +71,12 @@ export default function Navbar() {
           <button
   onClick={() => setMenuOpen(!menuOpen)}
   style={{
-    display: "none",
+    display: window.innerWidth < 768 ? "block" : "none",
     background: "transparent",
     border: "none",
-    fontSize: "22px",
+    fontSize: "24px",
     cursor: "pointer",
   }}
-  className="burger"
 >
   ☰
 </button>
