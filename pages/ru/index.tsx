@@ -318,7 +318,7 @@ export default function Home() {
           <div
             style={{
               borderRadius: "24px",
-              padding: "28px",
+              padding: "clamp(16px, 4vw, 28px)",
               background: "rgba(255,255,255,0.8)",
               border: "1px solid rgba(0,0,0,0.08)",
               boxShadow: "0 8px 22px rgba(0,0,0,0.04)",
@@ -340,7 +340,7 @@ export default function Home() {
               }}
             />
 
-            <ul style={{ margin: 0, paddingLeft: "18px", color: "#444", lineHeight: "1.9", position: "relative" }}>
+            <ul style={{ margin: 0, paddingLeft: "clamp(14px, 4vw, 18px)", fontSize: "clamp(14px, 2.8vw, 16px)", color: "#444", lineHeight: "1.9", position: "relative" }}>
               <li>Добавлен квиз: «Деловая культура ОАЭ»</li>
               <li>Обновлена подборка литературы по Gulf Studies</li>
               <li>Новый раздел: «Термины дипломатического языка»</li>
@@ -353,13 +353,13 @@ export default function Home() {
       <footer
         style={{
           marginTop: "70px",
-          padding: "30px 60px",
+          padding: "clamp(20px, 5vw, 30px) clamp(16px, 6vw, 60px)",
           borderTop: "1px solid rgba(0,0,0,0.08)",
           color: "#555",
           fontSize: "13px",
         }}
       >
-        <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 10 px" }}>
           <p style={{ margin: 0 }}>
             © {new Date().getFullYear()} Middle East Study Lab • создано для студентов и исследователей региона
           </p>
