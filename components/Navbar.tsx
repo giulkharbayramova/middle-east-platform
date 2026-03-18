@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { supabase } from "../lib/supabaseClient";
 
 export default function Navbar() {
@@ -31,21 +31,16 @@ export default function Navbar() {
 
   // Закрытие меню при клике вне
   useEffect(() => {
-  const handleClickOutside = (event: MouseEvent) => {
-    // Проверяем что current существует
-    if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-      setMenuOpen(false);
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+    if (menuOpen && isMobile) {
+      document.addEventListener("mousedown", handleClickOutside);
     }
-  };
-
-  if (menuOpen && isMobile) {
-    document.addEventListener("mousedown", handleClickOutside);
-  }
-
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, [menuOpen, isMobile]);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [menuOpen, isMobile]);
 
   return (
     <header
@@ -85,20 +80,49 @@ export default function Navbar() {
           Middle East Study Lab
         </Link>
 
-        {/* Кнопка меню для мобильных */}
+        {/* Десктопное меню */}
+        {!isMobile && (
+          <nav style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+            <Link href="/ru" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Главная
+            </Link>
+            <Link href="/ru/modules" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Учебные модули
+            </Link>
+            <Link href="/ru/library" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Библиотека
+            </Link>
+            <Link
+              href={loggedIn ? "/ru/profile" : "/ru/login"}
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                background: "#1d1d1d",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                fontWeight: 500,
+              }}
+            >
+              {loggedIn ? "Профиль" : "Войти"}
+            </Link>
+          </nav>
+        )}
+
+        {/* Мобильная кнопка */}
         {isMobile && (
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             style={{
               background: "transparent",
               border: "none",
-              fontSize: "24px",
               cursor: "pointer",
+              width: "24px",
+              height: "24px",
+              position: "relative",
+              zIndex: 200, // чтобы кнопка была выше меню
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              width: "24px",
-              height: "18px",
               padding: 0,
             }}
             aria-label="Toggle menu"
@@ -108,10 +132,10 @@ export default function Navbar() {
                 display: "block",
                 height: "3px",
                 width: "100%",
-                background: "#1d1d1d",
+background: "#1d1d1d",
                 borderRadius: "2px",
                 transition: "0.3s",
-                transform: menuOpen ? "rotate(45deg) translate(4px, 4px)" : "none",
+                transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
               }}
             />
             <span
@@ -133,19 +157,19 @@ export default function Navbar() {
                 background: "#1d1d1d",
                 borderRadius: "2px",
                 transition: "0.3s",
-                transform: menuOpen ? "rotate(-45deg) translate(4px, -4px)" : "none",
+                transform: menuOpen ? "rotate(-45deg) translate(5px, -5px)" : "none",
               }}
             />
           </button>
         )}
 
-        {/* Меню */}
-        {isMobile ? (
+        {/* Мобильное меню */}
+        {isMobile && (
           <div
             ref={menuRef}
             style={{
               position: "absolute",
-              top: menuOpen ? "70px" : "-500px",
+              top: 70,
               left: 0,
               width: "100%",
               background: "rgba(255,255,255,0.95)",
@@ -156,28 +180,35 @@ export default function Navbar() {
               flexDirection: "column",
               gap: "14px",
               zIndex: 100,
-              transition: "top 0.3s ease-in-out",
+              transition: "transform 0.3s ease, opacity 0.3s ease",
+              transform: menuOpen ? "translateY(0)" : "translateY(-20px)",
+              opacity: menuOpen ? 1 : 0,
+              pointerEvents: menuOpen ? "auto" : "none",
             }}
           >
-            <Link href="/ru">Главная</Link>
-            <Link href="/ru/modules">Учебные модули</Link>
-            <Link href="/ru/library">Библиотека</Link>
-            <Link href={loggedIn ? "/ru/profile" : "/ru/login"}>
-              {loggedIn ? "Профиль" : "Войти"}
+            <Link href="/ru" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Главная
             </Link>
-          </div>
-        ) : (
-          <nav style={{ display: "flex", gap: "20px", alignItems: "center" }}>
-            <Link href="/ru" className="body-text">Главная</Link>
-            <Link href="/ru/modules" className="body-text">Учебные модули</Link>
-            <Link href="/ru/library" className="body-text">Библиотека</Link>
+            <Link href="/ru/modules" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Учебные модули
+            </Link>
+            <Link href="/ru/library" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Библиотека
+            </Link>
             <Link
               href={loggedIn ? "/ru/profile" : "/ru/login"}
-              className="button"
+              style={{
+                textDecoration: "none",
+                color: "#fff",
+                background: "#1d1d1d",
+                padding: "8px 16px",
+                borderRadius: "4px",
+                fontWeight: 500,
+              }}
             >
               {loggedIn ? "Профиль" : "Войти"}
             </Link>
-          </nav>
+          </div>
         )}
       </div>
     </header>
