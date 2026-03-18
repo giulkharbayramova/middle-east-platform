@@ -132,7 +132,7 @@ export default function Navbar() {
                 display: "block",
                 height: "3px",
                 width: "100%",
-background: "#1d1d1d",
+                background: "#1d1d1d",
                 borderRadius: "2px",
                 transition: "0.3s",
                 transform: menuOpen ? "rotate(45deg) translate(5px, 5px)" : "none",
@@ -197,14 +197,7 @@ background: "#1d1d1d",
             </Link>
             <Link
               href={loggedIn ? "/ru/profile" : "/ru/login"}
-              style={{
-                textDecoration: "none",
-                color: "#fff",
-                background: "#1d1d1d",
-                padding: "8px 16px",
-                borderRadius: "4px",
-                fontWeight: 500,
-              }}
+              style={{ textDecoration: "none", color: "#1d1d1d" }}
             >
               {loggedIn ? "Профиль" : "Войти"}
             </Link>
