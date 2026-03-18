@@ -4,7 +4,19 @@ import { supabase } from "../lib/supabaseClient";
 
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  <div
+  style={{
+    maxWidth: "1100px",
+    margin: "0 auto",
+    padding: "0 20px",
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+  }}
+>
 
+</div>
   useEffect(() => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getSession();
@@ -56,9 +68,47 @@ export default function Navbar() {
         >
           Middle East Study Lab
         </Link>
-
+          <button
+  onClick={() => setMenuOpen(!menuOpen)}
+  style={{
+    display: "none",
+    background: "transparent",
+    border: "none",
+    fontSize: "22px",
+    cursor: "pointer",
+  }}
+  className="burger"
+>
+  ☰
+</button>
         {/* Меню */}
-        <nav style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+        <nav 
+          className="nav"
+          style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+          {menuOpen && (
+  <div
+    style={{
+      position: "absolute",
+      top: "70px",
+      left: 0,
+      width: "100%",
+      background: "rgba(255,255,255,0.95)",
+      backdropFilter: "blur(10px)",
+      borderBottom: "1px solid rgba(0,0,0,0.08)",
+      padding: "20px",
+      display: "flex",
+      flexDirection: "column",
+      gap: "14px",
+    }}
+  >
+    <Link href="/ru">Главная</Link>
+    <Link href="/ru/modules">Учебные модули</Link>
+    <Link href="/ru/library">Библиотека</Link>
+    <Link href={loggedIn ? "/ru/profile" : "/ru/login"}>
+      {loggedIn ? "Профиль" : "Войти"}
+    </Link>
+  </div>
+)}
           <Link href="/ru" className="body-text">Главная</Link>
           <Link href="/ru/modules" className="body-text">Учебные модули</Link>
           <Link href="/ru/library" className="body-text">Библиотека</Link>

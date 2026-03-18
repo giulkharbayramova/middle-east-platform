@@ -135,3 +135,18 @@ nav a::after {
 nav a:hover::after {
   width: 70%;
 }
+/* скрываем бургер на десктопе */
+.burger {
+  display: none;
+}
+
+/* мобильная версия */
+@media (max-width: 768px) {
+  .burger {
+    display: block;
+  }
+
+  .nav {
+    display: none !important;
+  }
+}
