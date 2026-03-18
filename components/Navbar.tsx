@@ -48,7 +48,7 @@ export default function Navbar() {
         background: "rgba(248,246,242,0.85)",
         backdropFilter: "blur(10px)",
         borderBottom: "1px solid rgba(0,0,0,0.08)",
-        position: "sticky",
+        position: "relative",
         top: 0,
         zIndex: 50,
       }}
@@ -61,6 +61,7 @@ export default function Navbar() {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
+          position: "relative",
         }}
       >
         {/* Лого */}
@@ -105,6 +106,7 @@ export default function Navbar() {
       display: "flex",
       flexDirection: "column",
       gap: "14px",
+      zIndex: 100,
     }}
   >
     <Link href="/ru">Главная</Link>
