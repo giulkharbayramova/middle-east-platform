@@ -16,6 +16,7 @@ export default function Home() {
   ];
 
   return (
+
     <div style={{ background: "#f8f6f2", minHeight: "100vh" }}>
       {/* HERO */}
       <main style={{ padding: "70px 60px" }}>
