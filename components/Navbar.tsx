@@ -83,6 +83,9 @@ export default function Navbar() {
         {/* Десктопное меню */}
         {!isMobile && (
           <nav style={{ display: "flex", gap: "20px", alignItems: "center" }}>
+             <Link href="/ru/about" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              О проекте
+            </Link>
             <Link href="/ru" style={{ textDecoration: "none", color: "#1d1d1d" }}>
               Главная
             </Link>
@@ -186,6 +189,9 @@ export default function Navbar() {
               pointerEvents: menuOpen ? "auto" : "none",
             }}
           >
+             <Link href="/ru/about" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              О проекте
+            </Link>
             <Link href="/ru" style={{ textDecoration: "none", color: "#1d1d1d" }}>
               Главная
             </Link>
