@@ -54,7 +54,7 @@ export default function LibraryPage() {
   }
 
   async function fetchLibrary() {
-    let query = supabase.from("library_items").select("*");
+    let query = supabase.from("library_items").select("*").neq("type", "seminar");
 
 if (selectedCountry) {
   query = query.eq("country", selectedCountry);
