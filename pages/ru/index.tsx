@@ -1,9 +1,10 @@
 import RegionMap from "../../components/RegionMap";
+import Link from "next/link";
 export default function Home() {
   const sections = [
-    { title: "Библиотека", desc: "Книги, статьи, фильмы и подборки по странам региона." },
-    { title: "Учебные модули", desc: "Углуби знания по культуре, политике и экономике." },
-    { title: "Страны", desc: "Изучай страны региона и ключевые факты по каждой." },
+    { title: "Библиотека", desc: "Книги, статьи, фильмы и подборки по странам региона.", link: "/ru/library" },
+    { title: "Учебные модули", desc: "Углуби знания по культуре, политике и экономике.", link: "/ru/modules" },
+    { title: "Страны", desc: "Изучай страны региона и ключевые факты по каждой.", link: "/ru/countries" },
   ];
 
   const countries = [
@@ -104,69 +105,89 @@ export default function Home() {
         </section>
 <RegionMap />
         {/* SECTIONS */}
-        <section id="sections" style={{ maxWidth: "1100px", margin: "70px auto 0" }}>
-          <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "20px" }}>
-            <div>
-              <h2 style={{ fontSize: "26px", marginBottom: "10px", color: "#1d1d1d" }}>Разделы платформы</h2>
-              <p style={{ margin: 0, fontSize: "14px", color: "#555", maxWidth: "650px", lineHeight: "1.6" }}>
-                Всё нужное собрано в одном месте — учебные материалы, рекомендации и практика.
-              </p>
-            </div>
-          </div>
+<section id="sections" style={{ maxWidth: "1100px", margin: "70px auto 0" }}>
+  <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "20px" }}>
+    <div>
+      <h2 style={{ fontSize: "26px", marginBottom: "10px", color: "#1d1d1d" }}>
+        Разделы платформы
+      </h2>
+      <p style={{ margin: 0, fontSize: "14px", color: "#555", maxWidth: "650px", lineHeight: "1.6" }}>
+        Всё нужное собрано в одном месте — учебные материалы, рекомендации и практика.
+      </p>
+    </div>
+  </div>
+
+  <div
+    style={{
+      marginTop: "26px",
+      display: "grid",
+      gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+      gap: "18px",
+    }}
+  >
+    {sections.map((item) => (
+      <Link
+        key={item.title}
+        href={item.link}
+        style={{ textDecoration: "none" }}
+      >
+        <div
+          style={{
+            padding: "24px",
+            borderRadius: "22px",
+            background: "rgba(255,255,255,0.78)",
+            border: "1px solid rgba(0,0,0,0.08)",
+            boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
+            position: "relative",
+            overflow: "hidden",
+            transition: "all 0.25s ease",
+            cursor: "pointer",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.transform = "translateY(-6px)";
+            e.currentTarget.style.boxShadow = "0 12px 30px rgba(0,0,0,0.08)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.transform = "translateY(0)";
+            e.currentTarget.style.boxShadow = "0 6px 18px rgba(0,0,0,0.04)";
+          }}
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: "0",
+              left: "0",
+              width: "100%",
+              height: "2px",
+              background:
+                "linear-gradient(90deg, rgba(180,140,90,0.35), rgba(180,140,90,0))",
+              opacity: 0.7,
+            }}
+          />
+
+          <h3 style={{ fontSize: "18px", marginBottom: "10px", color: "#1d1d1d" }}>
+            {item.title}
+          </h3>
+
+          <p style={{ margin: 0, fontSize: "14px", color: "#555", lineHeight: "1.55" }}>
+            {item.desc}
+          </p>
 
           <div
             style={{
-              marginTop: "26px",
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-              gap: "18px",
+              marginTop: "18px",
+              fontSize: "13px",
+              color: "#6b5a44",
+              opacity: 0.8,
             }}
           >
-            {sections.map((item) => (
-              <div
-                key={item.title}
-                style={{
-                  padding: "24px",
-                  borderRadius: "22px",
-                  background: "rgba(255,255,255,0.78)",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  boxShadow: "0 6px 18px rgba(0,0,0,0.04)",
-                  position: "relative",
-                  overflow: "hidden",
-                  transition: "all 0.25s ease",
-                }}
-              >
-                {/* тонкий восточный акцент */}
-                <div
-                  style={{
-                    position: "absolute",
-                    top: "0",
-                    left: "0",
-                    width: "100%",
-                    height: "2px",
-                    background: "linear-gradient(90deg, rgba(180,140,90,0.35), rgba(180,140,90,0))",
-                    opacity: 0.7,
-                  }}
-                />
-
-                <h3 style={{ fontSize: "18px", marginBottom: "10px", color: "#1d1d1d" }}>{item.title}</h3>
-                <p style={{ margin: 0, fontSize: "14px", color: "#555", lineHeight: "1.55" }}>{item.desc}</p>
-
-                <div
-                  style={{
-                    marginTop: "18px",
-                    fontSize: "13px",
-                    color: "#6b5a44",
-                    opacity: 0.8,
-                  }}
-                >
-                  Подробнее →
-                </div>
-              </div>
-            ))}
+            Подробнее →
           </div>
-        </section>
-
+        </div>
+      </Link>
+    ))}
+  </div>
+</section>
         {/* ROADMAP */}
 <section style={{ maxWidth: "1100px", margin: "90px auto 0" }}>
   <div style={{ display: "flex", justifyContent: "space-between", gap: "20px", alignItems: "flex-end" }}>

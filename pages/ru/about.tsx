@@ -52,7 +52,7 @@ export default function AboutPage() {
             marginBottom: "30px",
           }}
         >
-          <h2 style={{ marginBottom: "14px" }}>🎯 Цель проекта</h2>
+          <h2 style={{ marginBottom: "14px" }}>Цель проекта</h2>
 
           <p style={{ color: "#444", lineHeight: 1.8 }}>
             Создать удобную и современную образовательную среду для студентов,
@@ -73,7 +73,7 @@ export default function AboutPage() {
             marginBottom: "30px",
           }}
         >
-          <h2 style={{ marginBottom: "14px" }}>📚 Что внутри</h2>
+          <h2 style={{ marginBottom: "14px" }}>Разделы платформы</h2>
 
           <ul style={{ paddingLeft: "18px", lineHeight: 1.8 }}>
             <li>Учебные модули с заданиями</li>
@@ -94,7 +94,7 @@ export default function AboutPage() {
             boxShadow: "0 10px 30px rgba(0,0,0,0.05)",
           }}
         >
-          <h2 style={{ marginBottom: "14px" }}>🌍 Для кого</h2>
+          <h2 style={{ marginBottom: "14px" }}>Для кого</h2>
 
           <p style={{ color: "#444", lineHeight: 1.8 }}>
             Платформа предназначена для студентов, исследователей и всех,
