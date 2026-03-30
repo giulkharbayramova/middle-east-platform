@@ -16,6 +16,7 @@ type Material = {
   title: string;
   link: string | null;
   module_id: number;
+  type?: string; 
 };
 
 const modules: Module[] = [
@@ -107,6 +108,7 @@ export default function ModulesPage() {
   const [completedTests, setCompletedTests] = useState<number[]>([]);
   const [testScores, setTestScores] = useState<Record<number, number>>({});
   const [progress, setProgress] = useState(0);
+  const [activeSeminar, setActiveSeminar] = useState<Material | null>(null);
 
   useEffect(() => {
     fetchMaterials();
@@ -202,8 +204,12 @@ setTestScores(scores);
 
       {modules.map((module) => {
         const moduleMaterials = materials.filter(
-          (m) => m.module_id === module.id
-        );
+  (m) => m.module_id === module.id && m.type !== "seminar"
+);
+
+const seminarMaterials = materials.filter(
+  (m) => m.module_id === module.id && m.type === "seminar"
+);
         const isLocked =
   module.id !== 1 && !completedTests.includes(module.id - 1);
         return (
@@ -326,6 +332,92 @@ setTestScores(scores);
                     </ul>
                   )}
                 </div>
+
+                {/* Семинары */}
+
+<div
+  style={{
+    padding: "16px",
+    borderRadius: "12px",
+    background: "#f0f4f8",
+  }}
+>
+  <b>📄 Материалы семинаров</b>
+
+  {seminarMaterials.length === 0 ? (
+    <p style={{ marginTop: "8px", color: "#666" }}>
+      Материалы появятся после занятий
+    </p>
+  ) : (
+    <ul style={{ marginTop: "10px", paddingLeft: "18px" }}>
+      {seminarMaterials.map((mat) => (
+        <li key={mat.id}>
+          <button
+            onClick={() => setActiveSeminar(mat)}
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              cursor: "pointer",
+              color: "#1d1d1d",
+              textDecoration: "underline",
+              fontSize: "14px",
+            }}
+          >
+            {mat.title}
+          </button>
+        </li>
+      ))}
+    </ul>
+  )}
+
+  {/* Viewer */}
+
+  {activeSeminar && (
+    <div
+      style={{
+        marginTop: "16px",
+        borderRadius: "14px",
+        overflow: "hidden",
+        border: "1px solid rgba(0,0,0,0.1)",
+        background: "#fff",
+      }}
+    >
+      <div
+        style={{
+          padding: "10px 14px",
+          borderBottom: "1px solid rgba(0,0,0,0.08)",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <span style={{ fontSize: "14px", fontWeight: 600 }}>
+          {activeSeminar.title}
+        </span>
+
+        <button
+          onClick={() => setActiveSeminar(null)}
+          style={{
+            border: "none",
+            background: "none",
+            cursor: "pointer",
+            fontSize: "16px",
+          }}
+        >
+          ✕
+        </button>
+      </div>
+
+      <iframe
+        src={activeSeminar.link || ""}
+        width="100%"
+        height="400px"
+        style={{ border: "none" }}
+      />
+    </div>
+  )}
+</div>
 
                 {/* Тест */}
 
