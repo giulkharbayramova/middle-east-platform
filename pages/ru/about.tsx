@@ -102,6 +102,81 @@ export default function AboutPage() {
             в мировой политике.
           </p>
         </div>
+        <section
+  style={{
+    maxWidth: "900px",
+    margin: "70px auto 0",
+  }}
+>
+  <h2
+    style={{
+      fontSize: "26px",
+      marginBottom: "20px",
+      color: "#1d1d1d",
+    }}
+  >
+    Авторы проекта
+  </h2>
+
+  <div
+    style={{
+      display: "grid",
+      gap: "16px",
+    }}
+  >
+    {/* Ты */}
+    <div
+      style={{
+        padding: "20px",
+        borderRadius: "18px",
+        background: "rgba(255,255,255,0.8)",
+        border: "1px solid rgba(0,0,0,0.08)",
+      }}
+    >
+      <p style={{ margin: 0, fontWeight: 600 }}>
+        Гюльхар Байрамова
+      </p>
+
+      <p style={{ margin: "6px 0 0", color: "#555", fontSize: "14px" }}>
+        Автор и разработчик платформы Middle East Study Lab
+      </p>
+    </div>
+
+    {/* Научный руководитель */}
+    <div
+      style={{
+        padding: "20px",
+        borderRadius: "18px",
+        background: "rgba(255,255,255,0.8)",
+        border: "1px solid rgba(0,0,0,0.08)",
+      }}
+    >
+      <p style={{ margin: 0, fontWeight: 600 }}>
+        Андрей Владимирович Зелтынь
+      </p>
+
+      <p style={{ margin: "6px 0 0", color: "#555", fontSize: "14px" }}>
+        Академический руководитель проекта, старший преподаватель Школы Востоковедения НИУ ВШЭ
+      </p>
+    </div>
+  </div>
+</section>
+        {/* FOOTER */}
+      <footer
+        style={{
+          marginTop: "70px",
+          padding: "clamp(20px, 5vw, 30px) clamp(16px, 6vw, 60px)",
+          borderTop: "1px solid rgba(0,0,0,0.08)",
+          color: "#555",
+          fontSize: "13px",
+        }}
+      >
+        <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 10 px" }}>
+          <p style={{ margin: 0 }}>
+            © {new Date().getFullYear()} Middle East Study Lab • создано для студентов и исследователей региона
+          </p>
+        </div>
+      </footer>
       </div>
     </div>
   );
