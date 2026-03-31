@@ -50,7 +50,7 @@ export default function RegionMap() {
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{ scale: 420, center: [45, 27] }}
-          style={{ width: "100%", height: "420px" }}
+          style={{ width: "100%", height: "clamp(300px, 60vw, 600px)" }}
         >
           <Geographies geography={geoUrl}>
             {({ geographies }: { geographies: any[] }) =>
