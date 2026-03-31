@@ -13,7 +13,19 @@ export default function Profile() {
   const [email, setEmail] = useState<string | null>(null);
   const [groupNumber, setGroupNumber] = useState<string | null>(null);
   const [avatarStyle, setAvatarStyle] = useState<AvatarStyle>("sand");
+  const [announcements, setAnnouncements] = useState<any[]>([]);
+  useEffect(() => {
+  fetchAnnouncements();
+}, []);
 
+async function fetchAnnouncements() {
+  const { data } = await supabase
+    .from("announcements")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (data) setAnnouncements(data);
+}
   const [isEditing, setIsEditing] = useState(false);
   const [favorites, setFavorites] = useState<any[]>([]);
   const [progress, setProgress] = useState(0);
@@ -274,9 +286,9 @@ if (testData) {
   setProgress(percent);
 
   if (percent <= 30) {
-    setStatus("Начинающий советник");
+    setStatus("Помощник дипломата");
   } else if (percent <= 70) {
-    setStatus("Советник дипломата");
+    setStatus("Начинающий дипломат");
   } else {
     setStatus("Опытный дипломат");
   }
@@ -684,47 +696,32 @@ if (testData) {
 
           {/* Группа */}
           <div
-            style={{
-              padding: "24px",
-              borderRadius: "24px",
-              background: "rgba(255,255,255,0.85)",
-              border: "1px solid rgba(0,0,0,0.08)",
-              boxShadow: "0 10px 25px rgba(0,0,0,0.04)",
-            }}
-          >
-            <h2 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "10px" }}>
-              Объявления группы
-            </h2>
+  style={{
+    marginTop: "30px",
+    padding: "20px",
+    borderRadius: "16px",
+    background: "#faf7f2",
+  }}
+>
+  <h3 style={{ marginBottom: "10px" }}>📢 Объявления</h3>
 
-            <p style={{ fontSize: "14px", opacity: 0.7, lineHeight: 1.6 }}>
-              Здесь будут задания, рекомендации и объявления от преподавателя.
-            </p>
-
-            <div style={{ marginTop: "16px" }}>
-              <div
-                style={{
-                  padding: "14px 16px",
-                  borderRadius: "16px",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  background: "rgba(255,255,255,0.65)",
-                }}
-              >
-                <p style={{ fontSize: "14px", fontWeight: 600, margin: 0 }}>
-                  Посмотреть фильм по истории Ирана.
-                </p>
-              </div>
-
-              <p style={{ fontSize: "12px", opacity: 0.55, marginTop: "10px" }}>
-                Позже мы подключим базу и сделаем реальные объявления.
-              </p>
-            </div>
-          </div>
+  {announcements.length === 0 ? (
+    <p style={{ color: "#888" }}>Пока нет объявлений</p>
+  ) : (
+    <ul style={{ paddingLeft: "18px" }}>
+      {announcements.map((item) => (
+        <li key={item.id} style={{ marginBottom: "6px" }}>
+          {item.text}
+        </li>
+      ))}
+    </ul>
+  )}
+</div>
         </div>
 
         <div style={{ marginTop: "70px", textAlign: "center", opacity: 0.6 }}>
           <p style={{ fontSize: "13px" }}>
-            Платформа находится в разработке. Скоро здесь будет полноценная система
-            обучения и аналитики.
+            Платформа находится на этапе тестирования.
           </p>
         </div>
       </div>
@@ -811,6 +808,7 @@ if (testData) {
                 <option value="Востоковедение. Группа 6 ">Востоковедение. Группа 6 </option>
                 <option value="Майнор. Группа 1">Майнор. Группа 1 </option>
                 <option value="Майнор. Группа 2">Майнор. Группа 2 </option>
+                <option value="Любитель Ближнего Востока">Любитель Ближнего Востока</option>
               </select>
             </div>
 
