@@ -9,15 +9,6 @@ export default function Home() {
     { title: "Страны", desc: "Изучай страны региона и ключевые факты по каждой.", link: "/ru/countries" },
   ];
 
-  const countries = [
-    { name: "ОАЭ", desc: "Бизнес, культура и дипломатический протокол" },
-    { name: "Саудовская Аравия", desc: "Vision 2030, экономика и общественные реформы" },
-    { name: "Катар", desc: "Медиа, soft power и региональная политика" },
-    { name: "Турция", desc: "Политическая система и внешняя политика" },
-    { name: "Иран", desc: "История, религия и геополитика" },
-    { name: "Египет", desc: "Культура, общество и ключевые процессы региона" },
-  ];
-
   const [announcements, setAnnouncements] = useState<any[]>([]);
   useEffect(() => {
   fetchAnnouncements();
@@ -35,12 +26,12 @@ async function fetchAnnouncements() {
   return (
     <div style={{ background: "#f8f6f2", minHeight: "100vh" }}>
       {/* HERO */}
-      <main style={{ padding: "70px 60px" }}>
+      <main style={{ padding: "clamp(20px, 5vw, 70px) clamp(16px, 6vw, 60px)" }}>
         <section
           style={{
             maxWidth: "1100px",
             margin: "0 auto",
-            padding: "70px 60px",
+            padding: "clamp(20px, 5vw, 70px)",
             borderRadius: "28px",
             backgroundImage: "url('/hero-bg.png')",
             backgroundSize: "cover",
@@ -77,11 +68,11 @@ async function fetchAnnouncements() {
               образовательная платформа
             </p>
 
-            <h1 style={{ fontSize: "46px", margin: "18px 0", lineHeight: "1.15", color: "#1d1d1d" }}>
+            <h1 style={{ fontSize: "clamp(28px, 6vw, 46px)", margin: "18px 0", lineHeight: "1.15", color: "#1d1d1d" }}>
               Ближний Восток: бизнес, культура и дипломатия
             </h1>
 
-            <p style={{ fontSize: "18px", maxWidth: "650px", color: "#444", lineHeight: "1.6" }}>
+            <p style={{ fontSize: "clamp(14px, 3.5vw, 18px)", maxWidth: "650px", color: "#444", lineHeight: "1.6" }}>
               Платформа для студентов и всех, кто хочет понимать регион глубже:
               от делового этикета и политических контекстов до культуры и современной экономики.
             </p>
