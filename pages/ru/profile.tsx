@@ -697,13 +697,16 @@ if (testData) {
           {/* Группа */}
           <div
   style={{
-    marginTop: "30px",
-    padding: "20px",
-    borderRadius: "16px",
-    background: "#faf7f2",
+    padding: "24px",
+    borderRadius: "24px",
+    background: "rgba(255,255,255,0.85)",
+    border: "1px solid rgba(0,0,0,0.08)",
+    boxShadow: "0 10px 25px rgba(0,0,0,0.04)",
   }}
 >
-  <h3 style={{ marginBottom: "10px" }}>📢 Объявления</h3>
+  <h2 style={{ fontSize: "18px", fontWeight: 600, marginBottom: "14px" }}>
+    Объявления 
+  </h2>
 
   {announcements.length === 0 ? (
     <p style={{ color: "#888" }}>Пока нет объявлений</p>
