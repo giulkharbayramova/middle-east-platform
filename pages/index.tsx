@@ -1,5 +1,7 @@
 import RegionMap from "../components/RegionMap";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { supabase } from "../lib/supabaseClient";
 export default function Home() {
   const sections = [
     { title: "Библиотека", desc: "Книги, статьи, фильмы и подборки по странам региона.", link: "/ru/library" },
@@ -15,6 +17,20 @@ export default function Home() {
     { name: "Иран", desc: "История, религия и геополитика" },
     { name: "Египет", desc: "Культура, общество и ключевые процессы региона" },
   ];
+
+  const [announcements, setAnnouncements] = useState<any[]>([]);
+  useEffect(() => {
+  fetchAnnouncements();
+}, []);
+
+async function fetchAnnouncements() {
+  const { data } = await supabase
+    .from("announcements")
+    .select("*")
+    .order("created_at", { ascending: false });
+
+  if (data) setAnnouncements(data);
+}
 
   return (
     <div style={{ background: "#f8f6f2", minHeight: "100vh" }}>
@@ -360,11 +376,24 @@ export default function Home() {
               }}
             />
 
-            <ul style={{ margin: 0, paddingLeft: "clamp(14px, 4vw, 18px)", fontSize: "clamp(14px, 2.8vw, 16px)", color: "#444", lineHeight: "1.9", position: "relative" }}>
-              <li>Добавлен квиз: «Деловая культура ОАЭ»</li>
-              <li>Обновлена подборка литературы по Gulf Studies</li>
-              <li>Новый раздел: «Термины дипломатического языка»</li>
-            </ul>
+            <ul
+  style={{
+    margin: 0,
+    paddingLeft: "clamp(14px, 4vw, 18px)",
+    fontSize: "clamp(14px, 2.8vw, 16px)",
+    color: "#444",
+    lineHeight: "1.9",
+    position: "relative",
+  }}
+>
+  {announcements.length === 0 ? (
+    <li style={{ color: "#888" }}>Пока нет объявлений</li>
+  ) : (
+    announcements.map((item) => (
+      <li key={item.id}>{item.text}</li>
+    ))
+  )}
+</ul>
           </div>
         </section>
       </main>
