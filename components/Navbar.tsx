@@ -95,6 +95,9 @@ export default function Navbar() {
             <Link href="/ru/library" style={{ textDecoration: "none", color: "#1d1d1d" }}>
               Библиотека
             </Link>
+             <Link href="/ru/dictionary" style={{ textDecoration: "none", color: "#1d1d1d" }}>
+              Словарь
+            </Link>
             <Link
               href={loggedIn ? "/ru/profile" : "/ru/login"}
               style={{
