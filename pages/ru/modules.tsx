@@ -327,7 +327,11 @@ const seminarMaterials = materials.filter(
                   }}
                 >
                   <b>📚 Рекомендуемая литература</b>
-                  <p style={{ marginTop: "6px" }}>{module.literature}</p>
+                  <ul style={{ marginTop: "6px", paddingLeft: "18px" }}>
+                    {module.literature.map((point, index) => (
+                      <li key={index}>{point}</li>
+                    ))}
+                  </ul>
                 </div>
 
                 {/* Материалы */}
