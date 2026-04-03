@@ -172,7 +172,19 @@ if (data.user) {
     <option value="9">Любитель Ближнего Востока</option>
   </select>
 </div>
-
+<p
+  style={{
+    fontSize: "12px",
+    color: "#777",
+    textAlign: "center",
+    lineHeight: "1.4",
+  }}
+>
+  Нажимая кнопку «Зарегистрироваться», вы соглашаетесь с обработкой ваших персональных данных в соответсвии с{" "}
+  <a href="/privacy" style={{ textDecoration: "underline" }}>
+    Политикой конфиденциальности
+  </a>
+</p>
           <button
             type="submit"
             disabled={loading}
