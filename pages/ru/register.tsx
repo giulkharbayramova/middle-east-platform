@@ -181,7 +181,7 @@ if (data.user) {
   }}
 >
   Нажимая кнопку «Зарегистрироваться», вы соглашаетесь с обработкой ваших персональных данных в соответсвии с{" "}
-  <a href="/privacy" style={{ textDecoration: "underline" }}>
+  <a href="/ru/privacy" style={{ textDecoration: "underline" }}>
     Политикой конфиденциальности
   </a>
 </p>
