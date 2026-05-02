@@ -10,10 +10,15 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [groupNumber, setGroupNumber] = useState("1");
   const [loading, setLoading] = useState(false);
+  const [agree, setAgree] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!agree) {
+  setError("Необходимо согласиться с обработкой персональных данных.");
+  return;
+}
     setLoading(true);
     setError(null);
 
@@ -172,22 +177,44 @@ if (data.user) {
     <option value="9">Любитель Ближнего Востока</option>
   </select>
 </div>
-<p
+<label
   style={{
+    display: "flex",
+    alignItems: "flex-start",
+    gap: "10px",
     fontSize: "12px",
-    color: "#777",
-    textAlign: "center",
-    lineHeight: "1.4",
+    color: "#555",
+    lineHeight: "1.5",
+    cursor: "pointer",
   }}
 >
-  Нажимая кнопку «Зарегистрироваться», вы соглашаетесь с обработкой ваших персональных данных в соответсвии с{" "}
-  <a href="/ru/privacy" style={{ textDecoration: "underline" }}>
-    Политикой конфиденциальности
-  </a>
-</p>
+  <input
+    type="checkbox"
+    checked={agree}
+    onChange={(e) => setAgree(e.target.checked)}
+    style={{
+      marginTop: "3px",
+      width: "16px",
+      height: "16px",
+      cursor: "pointer",
+    }}
+  />
+
+  <span>
+    Я соглашаюсь с обработкой персональных данных и принимаю{" "}
+    <a
+      href="/ru/privacy"
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ textDecoration: "underline" }}
+    >
+      Политику конфиденциальности
+    </a>
+  </span>
+</label>
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !agree}
             style={{
               padding: "12px 0",
               borderRadius: "999px",
@@ -195,7 +222,8 @@ if (data.user) {
               color: "#fff",
               fontSize: "16px",
               border: "none",
-              cursor: "pointer",
+              cursor: loading || !agree ? "not-allowed" : "pointer",
+              opacity: loading || !agree ? 0.6 : 1,
               marginTop: "8px",
             }}
           >
